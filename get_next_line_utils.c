@@ -6,7 +6,7 @@
 /*   By: tlaranje <tlaranje@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:29:31 by tlaranje          #+#    #+#             */
-/*   Updated: 2025/10/30 17:04:36 by tlaranje         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:12:07 by tlaranje         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t	ft_strlen(char *s)
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*substr;
-	int		i;
+	size_t	i;
 
 	if (start >= ft_strlen(s))
 		return (malloc(1));
@@ -64,11 +64,26 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
+	char	*res;
 
+	res = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	fill_str(res, s1, s2);
+	return (res);
 }
 
 void	fill_str(char *res, char *s1, char *s2)
 {
+	unsigned int	i;
+	unsigned int	j;
 
+	i = 0;
+	j = 0;
+	while (s1[j])
+		res[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		res[i++] = s2[j++];
+	res[i] = '\0';
 }
-
